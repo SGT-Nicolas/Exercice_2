@@ -1,1 +1,11 @@
+Installation de la machine virtuelle debian 12
 
+installation de docker
+  ajout des prerequis :
+    repositories 
+    packages utiles
+  installation de docker 
+
+creation du conteneur suricata :
+  pull de l'image docker_suricata : docker pull jasonish/suricata:latest
+  run de l'image docker_suricata : docker run -it --net=host jasonish/suricata:latest -i enp0s3
