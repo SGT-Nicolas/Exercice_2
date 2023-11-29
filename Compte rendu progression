@@ -8,4 +8,11 @@ installation de docker
 
 creation du conteneur suricata :
   pull de l'image docker_suricata : docker pull jasonish/suricata:latest
-  run de l'image docker_suricata : docker run -it --net=host jasonish/suricata:latest -i enp0s3
+  creation des repertoires sous debian : /etc/suricata/config  /etc/suricata/log   /etc/suricata/rule  pour la gestion de suricata depuis debian avec l'outil scirius.
+  run de l'image docker_suricata : 
+    docker run -it --net=host --name=suricata \ ##commande elementaire pour definir le nom et le reseau du conteneur
+    --cap-add=net_admin --cap-add=net_raw --cap-add=sys_nice \ ##gestion des droits utilisateur pour le conteneur 
+    -v $(pwd)/logs:/var/log/suricata $(pwd)/config:/etc/suricata $(pwd)/rule:/var/lib/suricata/rule \##liaison de pont entre les repertoire debian et suricata (repertoire de config, log et regles)
+    jasonish/suricata:latest -i enp0s3 ##definition de l'image precedment telechargé et précision de l'interface debian pour le pont reseau.
+
+
